@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <window>
   <defaultcontrol always="false">602</defaultcontrol>
   <allowoverlay>yes</allowoverlay>
@@ -89,8 +90,7 @@
           <onleft>601</onleft>
           <onright>603</onright>
           <ondown>702</ondown>
-          <onup>Close</onup>
-          <onup>XBMC.ActivateWindow(142)</onup>
+          <onup>noop</onup>
           <onclick>PlayerControl(Play)</onclick>
         </control>
         <control type="button" id="603">
@@ -104,8 +104,7 @@
           <texturenofocus>VideoOSD/OSDStopNF.png</texturenofocus>
           <onleft>602</onleft>
           <onright>604</onright>
-          <onup>Close</onup>
-          <onup>XBMC.ActivateWindow(142)</onup>
+          <onup>noop</onup>
           <ondown>702</ondown>
           <onclick>PlayerControl(Stop)</onclick>
         </control>
@@ -193,8 +192,7 @@
           <onleft>601</onleft>
           <onright>603</onright>
           <ondown>701</ondown>
-          <onup>Close</onup>
-          <onup>XBMC.ActivateWindow(142)</onup>
+          <onup>noop</onup>
           <onclick>PlayerControl(Play)</onclick>
         </control>
         <control type="button" id="603">
@@ -208,8 +206,7 @@
           <texturenofocus>VideoOSD/OSDStopNF.png</texturenofocus>
           <onleft>602</onleft>
           <onright>604</onright>
-          <onup>Close</onup>
-          <onup>XBMC.ActivateWindow(142)</onup>
+          <onup>noop</onup>
           <ondown>701</ondown>
           <onclick>PlayerControl(Stop)</onclick>
         </control>
@@ -285,7 +282,7 @@
           <ondown>Close</ondown>
           <onclick>ActivateWindow(OSDVideoSettings)</onclick>
         </control>
-        <control type="togglebutton" id="702">
+        <control type="button" id="702">
           <posx>153</posx>
           <posy>8</posy>
           <width>81</width>
@@ -295,18 +292,11 @@
           <font>-</font>
           <texturefocus>VideoOSD/OSDSubtitlesFO.png</texturefocus>
           <texturenofocus>VideoOSD/OSDSubtitlesNF.png</texturenofocus>
-          <alttexturefocus>VideoOSD/OSDSubtitlesFO.png</alttexturefocus>
-          <alttexturenofocus>VideoOSD/OSDSubtitlesNF.png</alttexturenofocus>
-          <usealttexture>IsEmpty(Skin.String(SubtitleScript_Path))</usealttexture>
           <onleft>701</onleft>
           <onright>703</onright>
           <onup>602</onup>
-          <ondown>Close</ondown>
           <onclick>Close</onclick>
-          <onclick>XBMC.RunScript($INFO[Skin.String(SubtitleScript_Path)])</onclick>
-          <altclick>Close</altclick>
-          <altclick>Skin.SetAddon(SubtitleScript_Path,xbmc.python.subtitles)</altclick>
-          <altclick>XBMC.RunScript($INFO[Skin.String(SubtitleScript_Path)])</altclick>
+          <onclick>ActivateWindow(SubtitleSearch)</onclick>
         </control>
         <control type="button" id="703">
           <posx>214</posx>

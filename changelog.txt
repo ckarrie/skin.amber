@@ -1,14 +1,23 @@
-1.0.8
-Add dialogs for WMC pvr addon
-Open programs on Android differently
+1.6.1
+Fix opening add ons on Android
+Add possibility to define custom entry point for TV Shows
 
-1.0.5
-Optimise thumbs and bump skin version
-Re-work lyrics
-Add big list for photos and banners in big panel
-Hide gradient in music visualisation
-Delay startup when widgets are used
-V-Align video OSD and improve texture
-Remove last fm and push lyrics up in music odd
-Align scrollbar in slim dialog select
-Improve file manager
+1.6.0
+Add PVR shortcuts to submenu
+Fix label color in PVR
+Re-wamp media covers
+Add videoplaylist link to side menu
+Fix settings descriptions
+
+
+1.5.8
+Fix add ons settings 
+Add option to hide library sections - plexbmc profiles support 
+Increase plexbmc episode items
+Finally fix busy dialog
+Plexbmc add-on support improvements
+Add holiday snowfall effect
+Fix size and scrolling of titles in panel view
+
+Ver 1.5.0
+Initial release to Gotham repository

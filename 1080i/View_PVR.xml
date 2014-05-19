@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <includes>
   <include name="RecOverlay">
     <control type="image">
@@ -14,11 +15,47 @@
     <control type="group" description="TV Channels group">
       <visible>Control.IsVisible(11)</visible>
       <include>VisibleFadeEffect</include>
+        <control type="image" description="video window background">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>340</height>
+            <texture>img/BlackDot.png</texture>
+        </control>
+        <control type="videowindow" description="TV Channel Live BG">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>20</posy>
+            <width>600</width>
+            <height>500</height>
+        </control>
+        <control type="image" description="Current video label bacground">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <texture>img/BlackDot.png</texture>
+            <colordiffuse>DDFFFFFF</colordiffuse>
+        </control>
+        <control type="textbox" description="Current video label">
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <font>Details</font>
+            <align>center</align>
+            <textcolor>White</textcolor>
+            <autoscroll delay="3000" time="3000" repeat="3000">true</autoscroll>
+            <label>$INFO[Player.Title]</label>
+            <visible>Player.HasVideo</visible>
+        </control>
       <control type="list" id="11" description="CHANNELS">
-        <posx>940</posx>
-        <posy>445</posy>
-        <width>980</width>
-        <height>594</height>
+        <posx>844</posx>
+        <posy>120</posy>
+        <width>1076</width>
+        <height>892</height>
         <onleft>9000</onleft>
         <onright>70</onright>
         <onup>11</onup>
@@ -30,12 +67,31 @@
             <posx>0</posx>
             <posy>0</posy>
             <height>99</height>
-            <width>960</width>
+            <width>1076</width>
             <texture flipy="true" border="3">list/ListNF.png</texture>
           </control>
           <include>RecOverlay</include>
-          <control type="label" description="Number">
-            <posx>40</posx>
+          <control type="image" description="TV Logo">
+			<visible>!Skin.HasSetting(HideEPGLogos)</visible>
+            <posx>80</posx>
+			<posy>3</posy>
+            <width>90</width>
+            <height>90</height>
+            <texture>$INFO[ListItem.Icon]</texture>
+            <aspectratio>keep</aspectratio>
+          </control>
+		  <control type="label" description="Number">
+            <visible>!Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>40</posx>
+            <height>99</height>
+            <width>80</width>
+            <align>center</align>
+            <aligny>center</aligny>
+            <info>ListItem.ChannelNumber</info>
+          </control>
+		  <control type="label" description="Number">
+            <visible>Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>110</posx>
             <height>99</height>
             <width>80</width>
             <align>center</align>
@@ -43,14 +99,14 @@
             <info>ListItem.ChannelNumber</info>
           </control>
           <control type="label" description="Main Label">
-            <posx>90</posx>
+            <posx>186</posx>
             <height>55</height>
             <width>800</width>
             <scroll>false</scroll>
             <label>$INFO[ListItem.Label]</label>
           </control>
           <control type="label" description="Label2">
-            <posx>90</posx>
+            <posx>186</posx>
             <posy>40</posy>
             <height>60</height>
             <font>Details</font>
@@ -59,6 +115,16 @@
             <textcolor>Label2</textcolor>
             <label>$INFO[ListItem.Title]</label>
           </control>
+		  <control type="progress">
+		    <posx>186</posx>
+			<posy>92</posy>
+			<width>800</width>
+			<height>1</height>
+	        <texturebg border="0,0,0,0">img/AmberDotBG.png</texturebg>
+            <midtexture border="0,0,0,0">img/AmberDot.png</midtexture>
+			<info>ListItem.Progress</info>
+			<visible>ListItem.HasEpg</visible>
+		  </control>
         </itemlayout>
         <focusedlayout height="99">
           <control type="image">
@@ -71,27 +137,46 @@
           <control type="image">
             <posx>0</posx>
             <posy>0</posy>
-            <width>980</width>
+            <width>1076</width>
             <height>96</height>
             <texture>list/ListFO.png</texture>
           </control>
           <include>RecOverlay</include>
-          <control type="label" description="Number">
-            <posx>40</posx>
+		  <control type="image" description="TV Logo">
+			<visible>!Skin.HasSetting(HideEPGLogos)</visible>
+            <posx>80</posx>
+			<posy>3</posy>
+            <width>90</width>
+            <height>90</height>
+            <texture>$INFO[ListItem.Icon]</texture>
+            <aspectratio>keep</aspectratio>
+          </control>
+		  <control type="label" description="Number">
+            <visible>!Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>40</posx>
             <height>99</height>
             <width>80</width>
             <align>center</align>
             <aligny>center</aligny>
             <info>ListItem.ChannelNumber</info>
           </control>
-          <control type="label" description="Main Label">
-            <posx>90</posx>
+		  <control type="label" description="Number">
+            <visible>Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>110</posx>
+            <height>99</height>
+            <width>80</width>
+            <align>center</align>
+            <aligny>center</aligny>
+            <info>ListItem.ChannelNumber</info>
+          </control>
+		  <control type="label" description="Main Label">
+            <posx>186</posx>
             <height>55</height>
             <width>800</width>
             <label>$INFO[ListItem.Label]</label>
           </control>
           <control type="label" description="Label2">
-            <posx>90</posx>
+            <posx>186</posx>
             <posy>40</posy>
             <height>60</height>
             <font>Details</font>
@@ -99,6 +184,16 @@
             <textcolor>Label2</textcolor>
             <label>$INFO[ListItem.Title]</label>
           </control>
+		  <control type="progress">
+		    <posx>186</posx>
+			<posy>92</posy>
+			<width>800</width>
+			<height>1</height>
+	        <texturebg border="0,0,0,0">img/AmberDotBG.png</texturebg>
+            <midtexture border="0,0,0,0">img/AmberDot.png</midtexture>
+			<info>ListItem.Progress</info>
+			<visible>ListItem.HasEpg</visible>
+		  </control>
         </focusedlayout>
       </control>
     </control>
@@ -107,11 +202,47 @@
     <control type="group" description="Radio group">
       <visible>Control.IsVisible(12)</visible>
       <include>VisibleFadeEffect</include>
+        <control type="image" description="video window background">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>340</height>
+            <texture>img/BlackDot.png</texture>
+        </control>
+        <control type="videowindow" description="TV Channel Live BG">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>20</posy>
+            <width>600</width>
+            <height>500</height>
+        </control>
+        <control type="image" description="Current video label bacground">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <texture>img/BlackDot.png</texture>
+            <colordiffuse>DDFFFFFF</colordiffuse>
+        </control>
+        <control type="textbox" description="Current video label">
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <font>Details</font>
+            <align>center</align>
+            <textcolor>White</textcolor>
+            <autoscroll delay="3000" time="3000" repeat="3000">true</autoscroll>
+            <label>$INFO[Player.Title]</label>
+            <visible>Player.HasVideo</visible>
+        </control>
       <control type="list" id="12" description="RADIO">
         <posx>940</posx>
-        <posy>445</posy>
+        <posy>120</posy>
         <width>980</width>
-        <height>594</height>
+        <height>904</height>
         <onleft>9000</onleft>
         <onright>70</onright>
         <onup>12</onup>
@@ -201,11 +332,47 @@
     <control type="group" description="REC group">
       <visible>Control.IsVisible(13)</visible>
       <include>VisibleFadeEffect</include>
+        <control type="image" description="video window background">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>340</height>
+            <texture>img/BlackDot.png</texture>
+        </control>
+        <control type="videowindow" description="TV Channel Live BG">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>20</posy>
+            <width>600</width>
+            <height>500</height>
+        </control>
+        <control type="image" description="Current video label bacground">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <texture>img/BlackDot.png</texture>
+            <colordiffuse>DDFFFFFF</colordiffuse>
+        </control>
+        <control type="textbox" description="Current video label">
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <font>Details</font>
+            <align>center</align>
+            <textcolor>White</textcolor>
+            <autoscroll delay="3000" time="3000" repeat="3000">true</autoscroll>
+            <label>$INFO[Player.Title]</label>
+            <visible>Player.HasVideo</visible>
+        </control>
       <control type="list" id="13" description="REC">
         <posx>940</posx>
-        <posy>445</posy>
+        <posy>140</posy>
         <width>980</width>
-        <height>594</height>
+        <height>900</height>
         <onleft>9000</onleft>
         <onright>70</onright>
         <onup>13</onup>
@@ -304,14 +471,14 @@
       <include>VisibleFadeEffect</include>
       <control type="epggrid" id="10" description="EPG Grid">
         <posx>60</posx>
-        <posy>420</posy>
+        <posy>75</posy>
         <width>1800</width>
-        <height>546</height>
+        <height>705</height>
         <pagecontrol>10</pagecontrol>
         <scrolltime>350</scrolltime>
-        <timeblocks>20</timeblocks>
+        <timeblocks>30</timeblocks>
         <rulerunit>6</rulerunit>
-        <onleft>31</onleft>
+		<onleft>31</onleft>
         <onright>31</onright>
         <onup>10</onup>
         <ondown>10</ondown>
@@ -335,8 +502,9 @@
             <label>$INFO[ListItem.Label]</label>
           </control>
         </rulerlayout>
-        <channellayout height="78" width="420">
-          <control type="image" id="1" description="Column 1">
+		<progresstexture border="0,96,18,14">img/EPGMarker.png</progresstexture>
+		<channellayout height="78" width="420">
+        <control type="image" id="1" description="Column 1">
             <posx>0</posx>
             <posy>0</posy>
             <width>420</width>
@@ -354,11 +522,29 @@
             <info>ListItem.ChannelNumber</info>
           </control>
           <control type="label" id="1" description="Column 1 selected">
-            <posx>80</posx>
-            <width>300</width>
+            <visible>!Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>80</posx>
+            <width>258</width>
             <height>78</height>
             <font>Details</font>
             <label>$INFO[ListItem.ChannelName]</label>
+          </control>
+          <control type="label" id="1" description="Column 1 selected">
+            <visible>Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>80</posx>
+            <width>335</width>
+            <height>78</height>
+            <font>Details</font>
+            <label>$INFO[ListItem.ChannelName]</label>
+          </control>
+		  <control type="image" description="Channel Logo">
+            <visible>!Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>250</posx>
+            <posy>10</posy>
+			<width>80</width>
+			<height>60</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$INFO[ListItem.Icon]</texture>
           </control>
         </channellayout>
         <focusedchannellayout height="78" width="420">
@@ -382,14 +568,32 @@
             <info>ListItem.ChannelNumber</info>
           </control>
           <control type="label" id="1" description="Column 1 Focused">
-            <posx>80</posx>
-            <width>300</width>
+			<visible>!Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>80</posx>
+            <width>258</width>
             <height>78</height>
             <font>Details</font>
             <textcolor>White2</textcolor>
             <aligny>center</aligny>
             <align>left</align>
             <label>$INFO[ListItem.ChannelName]</label>
+          </control>
+		  <control type="label" id="1" description="Column 1 selected">
+            <visible>Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>80</posx>
+            <width>335</width>
+            <height>78</height>
+            <font>Details</font>
+            <label>$INFO[ListItem.ChannelName]</label>
+          </control>
+		  <control type="image" description="Channel Logo">
+            <visible>!Skin.HasSetting(HideEPGLogos)</visible>
+			<posx>250</posx>
+            <posy>10</posy>
+			<width>80</width>
+            <height>60</height>
+			<aspectratio>keep</aspectratio>
+            <texture>$INFO[ListItem.Icon]</texture>
           </control>
         </focusedchannellayout>
         <itemlayout height="78" width="60">
@@ -399,7 +603,7 @@
             <width>60</width>
             <height>78</height>
             <bordersize>1</bordersize>
-            <texture>img/BlackDotT.png</texture>
+            <texture>pvr_genres/$INFO[ListItem.Property(GenreType)].png</texture>
           </control>
           <control type="label" id="1">
             <posx>9</posx>
@@ -425,8 +629,8 @@
             <posy>0</posy>
             <width>60</width>
             <height>78</height>
-            <texture border="5">img/FrameSlim.png</texture>
-            <bordertexture>img/BlackDotT.png</bordertexture>
+            <texture>pvr_genres/$INFO[ListItem.Property(GenreType)].png</texture>
+            <bordertexture border="5">img/FrameSlim.png</bordertexture>
           </control>
           <control type="label" id="1">
             <posx>9</posx>
@@ -449,12 +653,19 @@
       </control>
       <control type="image" description="Top split">
         <posx>60</posx>
-        <posy>483</posy>
+        <posy>145</posy>
         <width>1800</width>
         <height>2</height>
         <texture>img/LineST.png</texture>
       </control>
-      <control type="group">
+      <control type="image" description="Middle split">
+        <posx>60</posx>
+        <posy>777</posy>
+        <width>1800</width>
+        <height>2</height>
+        <texture>img/LineST.png</texture>
+      </control>
+    <control type="group">
         <posx>60</posx>
         <posy>1008</posy>
         <control type="image" description="Bottom split">
@@ -472,7 +683,7 @@
           <aligny>center</aligny>
           <align>left</align>
           <scroll>false</scroll>
-          <label>[COLOR=Orange]$INFO[ListItem.Label][/COLOR]$INFO[ListItem.Duration,  -  ,  -  ]  [COLOR=Grey]$INFO[ListItem.StartTime,( ,  -  ]$INFO[ListItem.EndTime,, )][/COLOR]</label>
+          <label>[COLOR=Orange]$INFO[ListItem.Label][/COLOR]$INFO[ListItem.Genre,  -  ,  -]  [COLOR=Grey]$INFO[ListItem.StartTime,( ,  -  ]$INFO[ListItem.EndTime,, )][/COLOR]</label>
         </control>
       </control>
     </control>
@@ -483,6 +694,42 @@
       <description>Timers group</description>
       <visible>Control.IsVisible(14)</visible>
       <include>VisibleFadeEffect</include>
+        <control type="image" description="video window background">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>340</height>
+            <texture>img/BlackDot.png</texture>
+        </control>
+        <control type="videowindow" description="TV Channel Live BG">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>20</posy>
+            <width>600</width>
+            <height>500</height>
+        </control>
+        <control type="image" description="Current video label bacground">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <texture>img/BlackDot.png</texture>
+            <colordiffuse>DDFFFFFF</colordiffuse>
+        </control>
+        <control type="textbox" description="Current video label">
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <font>Details</font>
+            <align>center</align>
+            <textcolor>White</textcolor>
+            <autoscroll delay="3000" time="3000" repeat="3000">true</autoscroll>
+            <label>$INFO[Player.Title]</label>
+            <visible>Player.HasVideo</visible>
+        </control>
       <control type="list" id="14" description="Timers">
         <posx>60</posx>
         <posy>490</posy>
@@ -587,7 +834,7 @@
       </control>
       <control type="group" description="Header">
         <posx>60</posx>
-        <posy>430</posy>
+        <posy>440</posy>
         <control type="image" description="split">
           <posx>0</posx>
           <posy>39</posy>
@@ -910,6 +1157,42 @@
       <description>Timers group</description>
       <visible>Control.IsVisible(17)</visible>
       <include>VisibleFadeEffect</include>
+        <control type="image" description="video window background">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>340</height>
+            <texture>img/BlackDot.png</texture>
+        </control>
+        <control type="videowindow" description="TV Channel Live BG">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>20</posy>
+            <width>600</width>
+            <height>500</height>
+        </control>
+        <control type="image" description="Current video label bacground">
+            <visible>Player.HasVideo</visible>
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <texture>img/BlackDot.png</texture>
+            <colordiffuse>DDFFFFFF</colordiffuse>
+        </control>
+        <control type="textbox" description="Current video label">
+            <posx>60</posx>
+            <posy>100</posy>
+            <width>600</width>
+            <height>40</height>
+            <font>Details</font>
+            <align>center</align>
+            <textcolor>White</textcolor>
+            <autoscroll delay="3000" time="3000" repeat="3000">true</autoscroll>
+            <label>$INFO[Player.Title]</label>
+            <visible>Player.HasVideo</visible>
+        </control>
       <control type="list" id="17" description="Search">
         <posx>60</posx>
         <posy>490</posy>
